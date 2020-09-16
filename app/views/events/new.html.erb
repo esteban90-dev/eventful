@@ -15,7 +15,7 @@
 <%= form_with model: @event do |f| %>
   Name:<%= f.text_field :name %><br><br>
   Location:<%= f.text_area :location %><br><br>
-  Time:<%= f.text_field :time %><br><br>
+  Date/Time:<%= f.datetime_select :time %><br><br>
   Invitees:<%= f.select :attendee_ids, @user_options, { :prompt => "Please select" }, multiple: true, include_blank: false, include_hidden: false %>
   <%= f.submit %>
 <% end %>
