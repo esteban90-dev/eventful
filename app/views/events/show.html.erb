@@ -1,0 +1,20 @@
+<h1>Event</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Time</th>
+    <th>Creator</th>
+    <th>Attendees</th>
+  </tr>
+  <% @event.attendees.each do |attendee| %>
+    <tr>
+      <td><%= @event.name %></td>
+      <td><%= @event.location %></td>
+      <td><%= @event.time %></td>
+      <td><%= @event.host.name %></td>
+      <td><%= attendee.name %></td>
+    </tr>
+  <% end %>
+</table>
