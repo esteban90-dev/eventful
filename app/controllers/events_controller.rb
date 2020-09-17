@@ -10,7 +10,7 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new
-    @user_options = User.all.map{ |u| [ u.name, u.id ]}
+    user_options
   end
 
   def create
@@ -20,6 +20,7 @@ class EventsController < ApplicationController
       flash[:notice] = "Event successfully created!"
       redirect_to events_path
     else
+      user_options
       render :new
     end
   end
@@ -30,4 +31,7 @@ class EventsController < ApplicationController
     params.require(:event).permit(:name, :location, :time, attendee_ids: [] )
   end
 
+  def user_options
+    @user_options = User.all.map{ |u| [ u.name, u.id ]}
+  end
 end
