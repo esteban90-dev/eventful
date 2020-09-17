@@ -6,15 +6,26 @@
     <th>Location</th>
     <th>Time</th>
     <th>Creator</th>
+  </tr>
+  <tr>
+    <td><%= @event.name %></td>
+    <td><%= @event.location %></td>
+    <td><%= @event.time %></td>
+    <td><%= @event.host.name %></td>
+  </tr>
+</table>
+
+<br><br>
+
+<table>
+  <tr>
     <th>Attendees</th>
   </tr>
   <% @event.attendees.each do |attendee| %>
     <tr>
-      <td><%= @event.name %></td>
-      <td><%= @event.location %></td>
-      <td><%= @event.time %></td>
-      <td><%= @event.host.name %></td>
       <td><%= attendee.name %></td>
     </tr>
   <% end %>
 </table>
+
+
