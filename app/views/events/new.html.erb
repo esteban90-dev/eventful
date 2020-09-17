@@ -12,7 +12,7 @@
   </div>
 <% end %>
 
-<%= form_with model: @event do |f| %>
+<%= form_with model: @event, local: true do |f| %>
   Name:<%= f.text_field :name %><br><br>
   Location:<%= f.text_area :location %><br><br>
   Date/Time:<%= f.datetime_select :time %><br><br>
