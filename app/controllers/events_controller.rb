@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :find_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = Event.where(host_id: current_user_id)
+    @events = Event.all
   end
 
   def show
@@ -15,8 +15,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(event_params)
-    @event.host = current_user
+    @event = current_user.hosted_events.build(event_params)
     if @event.save
       flash[:notice] = "Event successfully created!"
       redirect_to events_path
@@ -54,7 +53,8 @@ class EventsController < ApplicationController
   end
 
   def user_options
-    @user_options = User.all.map{ |u| [ u.name, u.id ]}
+    user_list = User.all.reject{ |user| user.name == current_user.name }
+    @user_options = user_list.map{ |u| [ u.name, u.id ]}
   end
 
   def find_event
