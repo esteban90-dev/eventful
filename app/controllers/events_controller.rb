@@ -3,7 +3,8 @@ class EventsController < ApplicationController
   before_action :find_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = Event.all
+    @past_events = Event.past 
+    @upcoming_events = Event.upcoming
   end
 
   def show
@@ -41,7 +42,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    flash[:notice] = "Event sucessfully destroyed"
+    flash[:notice] = "Event sucessfully deleted"
     redirect_to events_path
   end
 
