@@ -1,16 +1,96 @@
-<h1>User</h1>
+<h1><%= @user.name %></h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-  </tr>
-  <tr>
-    <td><%= @user.name %></td>
-    <td><%= @user.email %></td>
-  </tr>
-</table>
+<br><h3>Hosting</h3><br>
+
+<h4>Upcoming</h4>
+  <% if @user.hosted_events.upcoming.any? %>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Time</th>
+      </tr>
+      <% @user.hosted_events.upcoming.each do |event| %>
+        <tr>
+          <td><%= link_to event.name, event_path(event) %></td>
+          <td><%= event.location %></td>
+          <td><%= event.time %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    none
+  <% end %>
+
+
+<br><h4>Past</h3><br>
+  <% if @user.hosted_events.past.any? %>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Time</th>
+      </tr>
+      <% @user.hosted_events.past.each do |event| %>
+        <tr>
+          <td><%= link_to event.name, event_path(event) %></td>
+          <td><%= event.location %></td>
+          <td><%= event.time %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    none
+  <% end %>
+<br><br>
+
+<br><h3>Attending</h3><br>
+
+<h4>Upcoming</h4>
+  <% if @user.attending_events.upcoming.any? %>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Time</th>
+      </tr>
+      <% @user.attending_events.upcoming.each do |event| %>
+        <tr>
+          <td><%= link_to event.name, event_path(event) %></td>
+          <td><%= event.location %></td>
+          <td><%= event.time %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    none
+  <% end %>
+
+
+<br><h4>Past</h3><br>
+  <% if @user.attending_events.past.any? %>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Time</th>
+      </tr>
+      <% @user.attending_events.past.each do |event| %>
+        <tr>
+          <td><%= link_to event.name, event_path(event) %></td>
+          <td><%= event.location %></td>
+          <td><%= event.time %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    none
+  <% end %>
+<br><br>
 
 <br><br>
-<%= link_to "Edit User", edit_user_path(@user) %>
-<%= link_to "Delete User", user_path(@user), method: :delete, data: { confirm: "Are you sure?" } %>
+
+<% if @user.name == current_user.name %>
+  <%= link_to "Edit User", edit_user_path(@user) %>
+  <%= link_to "Delete User", user_path(@user), method: :delete, data: { confirm: "Are you sure?" } %>
+<% end %>
