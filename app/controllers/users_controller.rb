@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def new
     @user = User.new
   end
@@ -7,7 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash.notice = "A new user has been created"
+      flash[:notice] = "New user successfully created"
       redirect_to events_path
     else
       render :new
@@ -25,7 +24,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash.notice = "User information has been updated"
+      flash[:notice] = "User information successfully updated"
       redirect_to events_path
     else
       render :edit
@@ -35,7 +34,7 @@ class UsersController < ApplicationController
   def destroy
     user = User.find(params[:id])
     user.destroy
-    flash.notice = "User deleted"
+    flash[:notice] = "User successfully deleted"
     redirect_to events_path
   end
 
