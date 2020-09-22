@@ -1,0 +1,19 @@
+<% if @event.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
+ 
+    <ul>
+    <% @event.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: @event, local: true do |f| %>
+  Name:<%= f.text_field :name %><br><br>
+  Location:<%= f.text_area :location %><br><br>
+  Date/Time:<%= f.datetime_select :time %><br><br>
+  Invitees:<%= f.select :attendee_ids, @user_options, { :prompt => "Please select" }, multiple: true, include_blank: false, include_hidden: false %>
+  <%= f.submit %>
+<% end %>
