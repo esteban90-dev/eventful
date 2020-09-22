@@ -28,4 +28,8 @@
   <% end %>
 </table>
 
+<br><br>
+
+<%= link_to "Delete event", event_path(@event), method: :delete, data: { confirm: "Are you sure?" } %>
+
 
