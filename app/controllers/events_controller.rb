@@ -1,8 +1,9 @@
 class EventsController < ApplicationController
+  before_action :require_login
   before_action :find_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    @events = Event.all 
+    @events = Event.where(host_id: current_user_id)
   end
 
   def show
