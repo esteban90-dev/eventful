@@ -1,97 +1,144 @@
-<h1><%= @user.name %></h1>
+<div class="container">
+  <div class="row">
+    <h2><%= @user.name.capitalize %>'s Profile</h2>
+  </div>
 
-<br><h3>Hosting</h3><br>
+  <div class="row mt-4 mb-4 bg-light">
+    <div class="col-md-12 d-flex justify-content-center">
+      <h3>Hosting Events</h3>
+    </div>
+  </div>
+    
+  <div class="row mb-4">
+    <div class="col-md-6 d-flex justify-content-center">
+      <h4>Upcoming</h4>
+    </div>
+    <div class="col-md-6 d-flex justify-content-center">
+      <h4>Past</h4>
+    </div>
+  </div>
 
-<h4>Upcoming</h4>
-  <% if @user.hosted_events.upcoming.any? %>
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Time</th>
-      </tr>
-      <% @user.hosted_events.upcoming.each do |event| %>
-        <tr>
-          <td><%= link_to event.name, event_path(event) %></td>
-          <td><%= event.location %></td>
-          <td><%= event.time %></td>
-        </tr>
+  <div class="row">
+    <div class="col-md-6 d-flex justify-content-center">
+      <% if @user.hosted_events.upcoming.any? %>
+        <table class="table table-bordered table-sm">
+          <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Time</th>
+          </tr>
+          <% @user.hosted_events.upcoming.each do |event| %>
+            <tr>
+              <td><%= link_to event.name, event_path(event) %></td>
+              <td><%= event.location %></td>
+              <td><%= event.time %></td>
+            </tr>
+          <% end %>
+        </table>
+      <% else %>
+        <table>
+          <tr>
+            <td>none</td>
+          </tr>
+        </table>
       <% end %>
-    </table>
-  <% else %>
-    none
-  <% end %>
-
-
-<br><h4>Past</h3><br>
-  <% if @user.hosted_events.past.any? %>
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Time</th>
-      </tr>
-      <% @user.hosted_events.past.each do |event| %>
-        <tr>
-          <td><%= link_to event.name, event_path(event) %></td>
-          <td><%= event.location %></td>
-          <td><%= event.time %></td>
-        </tr>
+    </div>
+    <div class="col-md-6 d-flex justify-content-center">
+      <% if @user.hosted_events.past.any? %>
+        <table class="table table-bordered table-sm">
+          <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Time</th>
+          </tr>
+          <% @user.hosted_events.past.each do |event| %>
+            <tr>
+              <td><%= link_to event.name, event_path(event) %></td>
+              <td><%= event.location %></td>
+              <td><%= event.time %></td>
+            </tr>
+          <% end %>
+        </table>
+      <% else %>
+        none
       <% end %>
-    </table>
-  <% else %>
-    none
-  <% end %>
-<br><br>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-12 d-flex justify-content-center mt-4 mb-4 bg-light">
+      <h3>Attending Events</h3>
+    </div>
+  </div>
 
-<br><h3>Attending</h3><br>
+  <div class="row mb-4">
+    <div class="col-md-6 d-flex justify-content-center">
+      <h4>Upcoming</h4>
+    </div>
+    <div class="col-md-6 d-flex justify-content-center">
+      <h4>Past</h4>
+    </div>
+  </div>
 
-<h4>Upcoming</h4>
-  <% if @user.attending_events.upcoming.any? %>
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Time</th>
-      </tr>
-      <% @user.attending_events.upcoming.each do |event| %>
-        <tr>
-          <td><%= link_to event.name, event_path(event) %></td>
-          <td><%= event.location %></td>
-          <td><%= event.time %></td>
-        </tr>
+  <div class="row">
+    <div class="col-md-6 d-flex justify-content-center">        
+      <% if @user.attending_events.upcoming.any? %>
+        <table class="table table-bordered table-sm">
+          <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Time</th>
+          </tr>
+          <% @user.attending_events.upcoming.each do |event| %>
+            <tr>
+              <td><%= link_to event.name, event_path(event) %></td>
+              <td><%= event.location %></td>
+              <td><%= event.time %></td>
+            </tr>
+          <% end %>
+        </table>
+      <% else %>
+        <table>
+          <tr>
+            <td>none</td>
+          </tr>
+        </table>
       <% end %>
-    </table>
-  <% else %>
-    none
-  <% end %>
+    </div>
 
-
-<br><h4>Past</h3><br>
-  <% if @user.attending_events.past.any? %>
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Location</th>
-        <th>Time</th>
-      </tr>
-      <% @user.attending_events.past.each do |event| %>
-        <tr>
-          <td><%= link_to event.name, event_path(event) %></td>
-          <td><%= event.location %></td>
-          <td><%= event.time %></td>
-        </tr>
+    <div class="col-md-6 d-flex justify-content-center">
+      <% if @user.attending_events.past.any? %>
+        <table class="table table-bordered table-sm">
+          <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Time</th>
+          </tr>
+          <% @user.attending_events.past.each do |event| %>
+            <tr>
+              <td><%= link_to event.name, event_path(event) %></td>
+              <td><%= event.location %></td>
+              <td><%= event.time %></td>
+            </tr>
+          <% end %>
+        </table>
+      <% else %>
+        <table>
+          <tr>
+            <td>none</td>
+          </tr>
+        </table>
       <% end %>
-    </table>
-  <% else %>
-    none
-  <% end %>
-<br><br>
+    </div>
+  </div>
 
-<br><br>
-
-<% if @user.name == current_user.name %>
-  <%= link_to "Edit User", edit_user_path(@user) %>
-  <%= link_to "Delete User", user_path(@user), method: :delete, data: { confirm: "Are you sure?" } %>
-<% end %>
-<%= link_to "Back to Events", events_path %>
+  <div class="row">
+    <div class="col-md-2 offset-md-10 mt-3 mb-5">
+      <% if @user.name == current_user.name %>
+        <%= link_to "Edit User", edit_user_path(@user) %><br>
+        <%= link_to "Delete User", user_path(@user), method: :delete, data: { confirm: "Are you sure?" } %><br><br>
+      <% end %>
+      <%= link_to "Back to Events", events_path %>
+    </div>
+  </div>
+</div>

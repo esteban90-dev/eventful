@@ -1,39 +1,55 @@
-<h1>Event</h1>
+<div class="container">
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Location</th>
-    <th>Time</th>
-    <th>Creator</th>
-  </tr>
-  <tr>
-    <td><%= @event.name %></td>
-    <td><%= @event.location %></td>
-    <td><%= @event.time %></td>
-    <td><%= @event.host.name %></td>
-  </tr>
-</table>
+  <div class="row">
+    <div class="col-md-12 d-flex justify-content-center">
+      <h2>Event Details</h2>
+    </div>
+  </div>
 
-<br><br>
+  <div class="row">
+    <div class="col-md-12 d-flex justify-content-center">
+      <table class="table table-bordered table-sm">
+        <tr>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Time</th>
+          <th>Creator</th>
+        </tr>
+        <tr>
+          <td><%= @event.name %></td>
+          <td><%= @event.location %></td>
+          <td><%= @event.time %></td>
+          <td><%= @event.host.name %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
 
-<table>
-  <tr>
-    <th>Attendees</th>
-  </tr>
-  <% @event.attendees.each do |attendee| %>
-    <tr>
-      <td><%= attendee.name %></td>
-    </tr>
-  <% end %>
-</table>
+  <div class="row">
+    <div class="col-md-2">
+      <table class="table table-bordered table-sm">
+        <tr>
+          <th>Attendees</th>
+        </tr>
+        <% @event.attendees.each do |attendee| %>
+          <tr>
+            <td><%= attendee.name %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
 
-<br><br>
+  <div class="row">
+    <div class="col-md-12 d-flex justify-content-end mt-3 mb-5">
+      <% if @event.host.name == current_user.name %>
+        <%= link_to "Edit event", edit_event_path(@event) %><br>
+        <%= link_to "Delete event", event_path(@event), method: :delete, data: { confirm: "Are you sure?" } %><br><br><br>
+      <% end %>
+      <%= link_to "Back to Events", events_path %>
+    </div>
+  </div>
 
-<% if @event.host.name == current_user.name %>
-  <%= link_to "Edit event", edit_event_path(@event) %>
-  <%= link_to "Delete event", event_path(@event), method: :delete, data: { confirm: "Are you sure?" } %>
-<% end %>
-<%= link_to "Back to Events", events_path %>
+</div>
 
 

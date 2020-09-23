@@ -1,7 +1,13 @@
-<div class="container mt-5">
-  <h3>Upcoming Events</h3><br>
+<div class="container">
+
   <div class="row">
-    <table class="table table-bordered">
+    <div class="col-md-12 d-flex justify-content-center bg-light mt-4 mb-4">
+      <h2>Upcoming Events</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <table class="table table-bordered table-sm">
       <tr>
         <th>Name</th>
         <th>Location</th>
@@ -20,35 +26,40 @@
       <% end %>
     </table>
   </div>
+
   <div class="row">
-      <div class="col-md-2 offset-md-10 mt-3">
-        <%= link_to "Create Event", new_event_path %>
-      </div>
+    <div class="col-md-12 d-flex justify-content-end mt-3 mb-5">
+      <%= link_to "Create Event", new_event_path %>
+    </div>
   </div>
-</div>
 
-<br><br>
+  <div class="row">
+    <div class="col-md-12 d-flex justify-content-center bg-light mt-4 mb-4">
+      <h2>Past Events</h2>
+    </div>
+  </div>
 
-<div class="container">
-  <h3>Past Events</h3><br>
-  <table class="table table-bordered">
-    <tr>
-      <th>Name</th>
-      <th>Location</th>
-      <th>Time</th>
-      <th>Creator</th>
-    </tr>
-    <% @past_events.each do |event| %>
-      <% if Time.now > event.time %>
-        <tr>
-          <td><%= link_to event.name, event_path(event) %></td>
-          <td><%= event.location %></td>
-          <td><%= event.time %></td>
-          <td><%= link_to event.host.name, user_path(event.host) %></td>
-        </tr>
+  <div class="row mb-5">
+    <table class="table table-bordered table-sm">
+      <tr>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Time</th>
+        <th>Creator</th>
+      </tr>
+      <% @past_events.each do |event| %>
+        <% if Time.now > event.time %>
+          <tr>
+            <td><%= link_to event.name, event_path(event) %></td>
+            <td><%= event.location %></td>
+            <td><%= event.time %></td>
+            <td><%= link_to event.host.name, user_path(event.host) %></td>
+          </tr>
+        <% end %>
       <% end %>
-    <% end %>
-  </table>
+    </table>
+  </div>
+
 </div>
 
 
