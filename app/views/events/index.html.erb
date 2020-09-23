@@ -1,49 +1,55 @@
-<h1>Events</h1>
-
-<h3>Upcoming Events</h3><br>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Location</th>
-    <th>Time</th>
-    <th>Creator</th>
-  </tr>
-  <% @upcoming_events.each do |event| %>
-    <% if Time.now < event.time %>
+<div class="container mt-5">
+  <h3>Upcoming Events</h3><br>
+  <div class="row">
+    <table class="table table-bordered">
       <tr>
-        <td><%= link_to event.name, event_path(event) %></td>
-        <td><%= event.location %></td>
-        <td><%= event.time %></td>
-        <td><%= link_to event.host.name, user_path(event.host) %></td>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Time</th>
+        <th>Creator</th>
       </tr>
-    <% end %>
-  <% end %>
-</table>
+      <% @upcoming_events.each do |event| %>
+        <% if Time.now < event.time %>
+          <tr>
+            <td><%= link_to event.name, event_path(event) %></td>
+            <td><%= event.location %></td>
+            <td><%= event.time %></td>
+            <td><%= link_to event.host.name, user_path(event.host) %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+  <div class="row">
+      <div class="col-md-2 offset-md-10 mt-3">
+        <%= link_to "Create Event", new_event_path %>
+      </div>
+  </div>
+</div>
 
 <br><br>
 
-<%= link_to "Create Event", new_event_path %>
-
-<br><br>
-<h3>Past Events</h3><br>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Location</th>
-    <th>Time</th>
-    <th>Creator</th>
-  </tr>
-  <% @past_events.each do |event| %>
-    <% if Time.now > event.time %>
-      <tr>
-        <td><%= link_to event.name, event_path(event) %></td>
-        <td><%= event.location %></td>
-        <td><%= event.time %></td>
-        <td><%= link_to event.host.name, user_path(event.host) %></td>
-      </tr>
+<div class="container">
+  <h3>Past Events</h3><br>
+  <table class="table table-bordered">
+    <tr>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Time</th>
+      <th>Creator</th>
+    </tr>
+    <% @past_events.each do |event| %>
+      <% if Time.now > event.time %>
+        <tr>
+          <td><%= link_to event.name, event_path(event) %></td>
+          <td><%= event.location %></td>
+          <td><%= event.time %></td>
+          <td><%= link_to event.host.name, user_path(event.host) %></td>
+        </tr>
+      <% end %>
     <% end %>
-  <% end %>
-</table>
+  </table>
+</div>
 
 
 
