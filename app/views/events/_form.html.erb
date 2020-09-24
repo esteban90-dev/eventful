@@ -20,7 +20,7 @@
       Name:<%= f.text_field :name, class: "form-control" %><br>
       Location:<%= f.text_field :location, class: "form-control" %><br>
       Date/Time:<%= f.datetime_select :time %><br><br>
-      Invitees:<%= f.select :attendee_ids, @user_options, { :prompt => "Please select" }, multiple: true, include_blank: false, include_hidden: false, class: "form-control" %><br>
+      Attendees:<%= f.select :attendee_ids, @user_options, { :prompt => "Please select" }, multiple: true, include_blank: false, include_hidden: false, class: "form-control" %><br>
       <%= f.submit %>
     <% end %>
   </div>
