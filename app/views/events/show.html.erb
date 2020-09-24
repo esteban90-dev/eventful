@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-3">
 
   <div class="row">
     <div class="col-md-12 d-flex justify-content-center">
@@ -40,16 +40,14 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-md-12 d-flex justify-content-end mt-3 mb-5">
-      <% if @event.host.name == current_user.name %>
-        <%= link_to "Edit event", edit_event_path(@event) %><br>
-        <%= link_to "Delete event", event_path(@event), method: :delete, data: { confirm: "Are you sure?" } %><br><br><br>
-      <% end %>
-      <%= link_to "Back to Events", events_path %>
+  <% if @event.host.name == current_user.name %>
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-end mt-3">
+        <%= link_to "Edit event", edit_event_path(@event) %>
+      </div>
     </div>
-  </div>
-
+  <% end %>
+  <%= render 'shared/to_events' %>
 </div>
 
 

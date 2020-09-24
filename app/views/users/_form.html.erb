@@ -1,19 +1,27 @@
-<% if @user.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
- 
-    <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+<div class="row">
+  <div class="col-md-12 d-flex justify-content-center">
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+        <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
     <% end %>
-    </ul>
   </div>
-<% end %>
+</div>
 
-<%= form_with model: @user, local: true do |f| %>
-  Name: <%= f.text_field :name %> <br><br>
-  Email: <%= f.text_field :email %> <br><br>
-  Password: <%= f.text_field :password %> <br><br>
-  Password Confirmation: <%= f.text_field :password_confirmation %> <br><br>
-  <%= f.submit %>
-<% end %>
+<div class="row">
+  <div class="col-md-12 d-flex justify-content-center">
+    <%= form_with model: @user, local: true do |f| %>
+      Name: <%= f.text_field :name, class: "form-control mb-3" %> 
+      Email: <%= f.text_field :email, class: "form-control mb-3" %> 
+      Password: <%= f.text_field :password, class: "form-control mb-3" %> 
+      Password Confirmation: <%= f.text_field :password_confirmation, class: "form-control mb -3" %><br>
+      <%= f.submit %>
+    <% end %>
+  </div>
+</div>
+

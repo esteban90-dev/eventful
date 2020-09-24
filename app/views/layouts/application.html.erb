@@ -13,12 +13,12 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white mb-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark text-white">
       <a class="navbar-brand text-white">Eventful</a>
       <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <%= link_to "Events", events_path %>
+            <%= link_to "Events", events_path, class: "text-white" %>
           </li>
         </ul>
       </div>
@@ -27,17 +27,17 @@
         <ul class="navbar-nav ml-auto">
           <% if current_user %>
             <li class="nav-item">
-              Logged in as <%= link_to current_user.name, user_path(current_user) %>
+              Logged in as <%= link_to current_user.name, user_path(current_user), class: "text-white" %>
             </li>
             <li class="nav-item ml-2">
-              <%= link_to "Logout", session_path('session'), method: :delete %>
+              <%= link_to "Logout", session_path('session'), method: :delete, class: "text-white" %>
             </li>
           <% else %>
             <li class="nav-item">
-              <%= link_to "Login", new_session_path %>
+              <%= link_to "Login", new_session_path, class: "text-white" %>
             </li>
             <li class="nav-item ml-2">
-              <%= link_to "Sign up", new_user_path %>
+              <%= link_to "Sign up", new_user_path, class: "text-white" %>
             </li>
           <% end %>
         </ul>
