@@ -5,6 +5,6 @@ class User < ApplicationRecord
   has_many :invitations, foreign_key: "attendee_id", dependent: :destroy
   has_many :attending_events, through: :invitations, source: "event"
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :email, presence: true
 end
